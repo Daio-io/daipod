@@ -1,0 +1,16 @@
+{
+  "name": "daipod",
+  "version": "1.0.0",
+  "description": "Podcast search and feed api",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.13.4",
+    "got": "^6.3.0",
+    "rss-to-json": "^1.0.2"
+  }
+}
