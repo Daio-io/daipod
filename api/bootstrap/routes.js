@@ -7,7 +7,7 @@ const feed = require('../lib/feed');
 router.get('/feed', (req, res) => {
   let url = req.query.url || '';
   feed(url).then(data => {
-    res.send(data);
+    res.json(data);
   }).catch(err => {
     res.send(err);
   })
@@ -16,7 +16,7 @@ router.get('/feed', (req, res) => {
 router.get('/search', (req, res) => {
   let q = req.query.q || '';
   search(q).then(data => {
-    res.send(data);
+    res.json(data);
   }).catch(err =>{
     res.send(err);
   })
