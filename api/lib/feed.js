@@ -1,6 +1,6 @@
 'use strict';
 
-const parser = require('rss-to-json');
+const parser = require('./rss-to-json');
 
 module.exports = function (url) {
 
