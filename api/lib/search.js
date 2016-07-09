@@ -26,6 +26,7 @@ function parseResult(result) {
     json.results = json.results.map((item) => {
       return {
         artist: item.artistName,
+        track: item.trackName,
         imageUrl: item.artworkUrl100,
         feedUrl: item.feedUrl,
         collection: item.collectionName
