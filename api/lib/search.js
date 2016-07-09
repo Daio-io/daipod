@@ -8,7 +8,8 @@ module.exports = function(q) {
   return new Promise((reject, resolve) => {
 
     got(url).then(response => {
-      resolve(parseResult(response));
+      let data = parseResult(response);
+      resolve(data);
     }).catch(err => {
       res.send({'error': err});
     });
@@ -20,8 +21,20 @@ module.exports = function(q) {
 function parseResult(result) {
   try {
     // todo - extract only the data required
-    return JSON.parse(result.body);
+    let json = JSON.parse(result.body);
+
+    json.results = json.results.map((item) => {
+      return {
+        artist: item.artistName,
+        imageUrl: item.artworkUrl100,
+        feedUrl: item.feedUrl,
+        collection: item.collectionName
+      }
+    });
+
+    return json
+
   } catch(_) {
-    return {'error': 'something went wrong with your search. Please try again'}
+    return {'error': 'something went wrong with your search. Please try again', results: []}
   }
 }

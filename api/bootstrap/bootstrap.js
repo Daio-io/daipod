@@ -3,7 +3,6 @@
 const routes = require('./routes');
 const config = require('./config');
 
-
 module.exports = (app) => {
 
   app.use((req, res, next) => {

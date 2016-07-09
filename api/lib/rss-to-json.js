@@ -7,6 +7,7 @@ const util = require('util'),
   request = require('request');
 
 module.exports = {
+
   load: function(url, callback){
     request(getConfig(url), (error, response, xml) => {
 
@@ -92,9 +93,11 @@ module.exports = {
     return rss;
 
   },
+
   read: function(url, callback){
     return this.load(url, callback);
   }
+
 };
 
 
