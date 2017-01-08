@@ -1,8 +1,8 @@
 'use strict';
 
 const router = require('express').Router();
-const search = require('../lib/search');
-const feed = require('../lib/feed');
+const search = require('./lib/search');
+const feed = require('./lib/feed');
 
 router.get('/feed', (req, res) => {
   let url = req.query.url || '';

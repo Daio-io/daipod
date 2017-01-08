@@ -8,6 +8,10 @@ const config = require('./api/bootstrap/config');
 
 bootstrap(app);
 
+app.get('/status', (_, res) => {
+  res.send('OK')
+})
+
 http.createServer(app).listen(config.PORT, () => {
   console.log('App started on port:', config.PORT);
 });

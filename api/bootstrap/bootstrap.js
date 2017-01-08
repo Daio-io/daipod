@@ -1,6 +1,6 @@
 'use strict';
 
-const routes = require('./routes');
+const routes = require('../routes');
 const config = require('./config');
 
 module.exports = (app) => {

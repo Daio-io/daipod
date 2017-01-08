@@ -1,6 +1,3 @@
-//
-// TODO - this is a temporary fork which will be replaced
-//
 'use strict';
 const util = require('util'),
   xml2js = require('xml2js'),
@@ -8,12 +5,12 @@ const util = require('util'),
 
 module.exports = {
 
-  load: function(url, callback){
+  load: function (url, callback) {
     request(getConfig(url), (error, response, xml) => {
 
       if (!error && response.statusCode == 200) {
-        var parser = new xml2js.Parser({trim: false, normalize: true, mergeAttrs: true});
-        parser.addListener("error", function(err) {
+        var parser = new xml2js.Parser({ trim: false, normalize: true, mergeAttrs: true });
+        parser.addListener("error", function (err) {
           callback(err, null);
         });
         parser.parseString(xml, (err, result) => {
@@ -21,16 +18,16 @@ module.exports = {
           callback(null, rss);
         });
 
-      }else {
+      } else {
         this.emit('error', new Error('Bad status code'));
       }
     });
   },
 
-  parser: function(json){
+  parser: function (json) {
     var channel = json.rss.channel;
-    var rss = {items:[]};
-    if(util.isArray(json.rss.channel))
+    var rss = { items: [] };
+    if (util.isArray(json.rss.channel))
       channel = json.rss.channel[0];
 
     if (channel.title) {
@@ -51,9 +48,9 @@ module.exports = {
       }
       channel.item.forEach(val => {
         var obj = {};
-        obj.title = !util.isNullOrUndefined(val.title)?val.title[0]:'';
-        obj.description = !util.isNullOrUndefined(val.description)?val.description[0]:'';
-        obj.url = obj.link = !util.isNullOrUndefined(val.link)?val.link[0]:'';
+        obj.title = !util.isNullOrUndefined(val.title) ? val.title[0] : '';
+        obj.description = !util.isNullOrUndefined(val.description) ? val.description[0] : '';
+        obj.url = obj.link = !util.isNullOrUndefined(val.link) ? val.link[0] : '';
 
         if (val.pubDate) {
           //lets try basis js date parsing for now
@@ -72,11 +69,11 @@ module.exports = {
         } else if (val['itunes:image']) {
           obj.image = val['itunes:image'][0].href[0];
         }
-        if(val.enclosure){
+        if (val.enclosure) {
           obj.enclosures = [];
-          if(!util.isArray(val.enclosure))
+          if (!util.isArray(val.enclosure))
             val.enclosure = [val.enclosure];
-          val.enclosure.forEach(function(enclosure){
+          val.enclosure.forEach(function (enclosure) {
             var enc = {};
             for (var x in enclosure) {
               enc[x] = enclosure[x][0];
@@ -94,7 +91,7 @@ module.exports = {
 
   },
 
-  read: function(url, callback){
+  read: function (url, callback) {
     return this.load(url, callback);
   }
 
