@@ -30,7 +30,7 @@ console.log(item)
       return {
         artist: item.artistName,
         track: item.trackName,
-        imageUrl: item.artworkUrl100.replace('100x100', '500x500'),
+        imageUrl: item.artworkUrl100.replace('100x100', '300x300'),
         feedUrl: item.feedUrl,
         collection: item.collectionName
       }
