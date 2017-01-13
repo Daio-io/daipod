@@ -25,8 +25,6 @@ function parseResult(result) {
 
     json.results = json.results.map((item) => {
 
-console.log(item)
-
       return {
         artist: item.artistName,
         track: item.trackName,
