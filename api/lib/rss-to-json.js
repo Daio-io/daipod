@@ -102,10 +102,9 @@ function getConfig(url) {
   return {
     url: url,
     headers: {
-      'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10.11; rv:45.0) Gecko/20100101 Firefox/45.0',
-      accept: 'text/html,application/xhtml+xml'
+      'Accept': 'application/rss+xml, application/rdf+xml;q=0.8, application/atom+xml;q=0.6, application/xml;q=0.4, text/xml;q=0.4'
     },
     pool: false,
-    followRedirect: true
+    followRedirect: false
   };
 }
