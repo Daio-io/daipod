@@ -6,8 +6,8 @@ const util = require('util'),
 module.exports = {
 
   load: function (url, callback) {
-    request(getConfig(url), (error, response, xml) => {
-      console.log("Status of feed: " +  response.statusCode)
+    let decoded = decodeURIComponent(url)
+    request(getConfig(decoded), (error, response, xml) => {
       if (!error && response.statusCode == 200) {
         var parser = new xml2js.Parser({ trim: false, normalize: true, mergeAttrs: true });
         parser.addListener("error", function (err) {
@@ -19,7 +19,7 @@ module.exports = {
         });
 
       } else {
-        this.emit('error', new Error('Bad status code'));
+        callback(new Error('Bad status code'));
       }
     });
   },
@@ -102,9 +102,10 @@ function getConfig(url) {
   return {
     url: url,
     headers: {
+      'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10.11; rv:45.0) Gecko/20100101 Firefox/45.0',
       'Accept': 'application/rss+xml, application/rdf+xml;q=0.8, application/atom+xml;q=0.6, application/xml;q=0.4, text/xml;q=0.4'
     },
     pool: false,
-    followRedirect: false
+    followRedirect: true
   };
 }
