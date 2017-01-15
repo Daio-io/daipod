@@ -12,6 +12,17 @@ app.get('/status', (_, res) => {
   res.send('OK')
 })
 
-http.createServer(app).listen(config.PORT, () => {
-  console.log('App started on port:', config.PORT);
-});
+const server = http.createServer(app);
+
+function startServer() {
+  server.listen(config.PORT, () => {
+    console.log('CapsuleAPI started on port:', config.PORT);
+  });
+  
+}
+
+if (require.main === module) {
+  startServer();
+} else {
+  module.exports = startServer();
+}

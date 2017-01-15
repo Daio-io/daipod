@@ -1,1 +1,1 @@
-web: node --max-old-space-size=512 index
+web: node --max-old-space-size=512 cluster
