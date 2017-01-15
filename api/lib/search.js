@@ -5,13 +5,13 @@ module.exports = function(q) {
 
   let url = `https://itunes.apple.com/search?term=${q}&entity=podcast`;
 
-  return new Promise((reject, resolve) => {
+  return new Promise((resolve, reject) => {
 
     got(url).then(response => {
       let data = parseResult(response);
       resolve(data);
     }).catch(err => {
-      res.send({'error': err});
+      reject(err);
     });
 
   });

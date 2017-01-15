@@ -19,7 +19,7 @@ router.get('/search', (req, res) => {
   let q = req.query.q || '';
   search(q).then(data => {
     res.json(data);
-  }).catch(err =>{
+  }).catch(err => {
     let message = `Error. Search for ${q} not found - ${err.message}`
     console.log(message);
     res.status(404).json({message: message, results: []});    
