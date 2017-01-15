@@ -7,7 +7,7 @@ module.exports = {
 
   load: function (url, callback) {
     request(getConfig(url), (error, response, xml) => {
-
+      console.log("Status of feed: " +  response.statusCode)
       if (!error && response.statusCode == 200) {
         var parser = new xml2js.Parser({ trim: false, normalize: true, mergeAttrs: true });
         parser.addListener("error", function (err) {
