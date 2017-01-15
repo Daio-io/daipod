@@ -9,7 +9,9 @@ router.get('/feed', (req, res) => {
   feed(url).then(data => {
     res.json(data);
   }).catch(err => {
-    res.send(err);
+    let message = `Error. Feed ${url} not found - ${err.message}`
+    console.log(message);
+    res.status(404).json({message: message, items: []});
   })
 });
 
@@ -18,7 +20,9 @@ router.get('/search', (req, res) => {
   search(q).then(data => {
     res.json(data);
   }).catch(err =>{
-    res.send(err);
+    let message = `Error. Search for ${q} not found - ${err.message}`
+    console.log(message);
+    res.status(404).json({message: message, results: []});    
   })
 });
 
