@@ -107,6 +107,6 @@ function getConfig(url) {
     },
     pool: false,
     followRedirect: true,
-    timeout: 1500
+    timeout: 3000
   };
 }
